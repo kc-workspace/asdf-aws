@@ -6,7 +6,7 @@ app_desc: Universal Command Line Interface for Amazon Web Services
 app_name: aws
 app_repo: https://github.com/aws/aws-cli
 app_website: https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html
-archive_conf_path: aws
+archive_conf_path: aws/dist
 archive_conf_strip: 0
 archive_enabled: true
 archive_regex: (\.tar\.gz|\.tgz|\.zip)$

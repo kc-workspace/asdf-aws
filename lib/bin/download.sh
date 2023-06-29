@@ -85,7 +85,7 @@ __asdf_bin() {
     kc_asdf_step "extract" "$outpath" \
       kc_asdf_extract "$tmppath" "$outpath" ||
       return 1
-    tmppath="$(kc_asdf_template "$outpath/aws" "${vars[@]}")"
+    tmppath="$(kc_asdf_template "$outpath/aws/dist" "${vars[@]}")"
     outpath="$outdir"
     kc_asdf_step "transfer" "$outpath" \
       kc_asdf_transfer "move" "$tmppath" "$outpath" ||
