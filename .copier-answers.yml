@@ -1,6 +1,6 @@
 ---
 ## Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
-_commit: v1.3.3-50-gf10d906
+_commit: v1.3.3-50-gd56c40f
 _src_path: /Users/kamontat/Desktop/Personal/asdf-plugin-template
 app_desc: Universal Command Line Interface for Amazon Web Services
 app_name: aws
