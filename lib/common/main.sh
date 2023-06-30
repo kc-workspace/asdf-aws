@@ -148,7 +148,6 @@ kc_asdf_gpg() {
     kc_asdf_error "$ns" "public-key not found at %s" "$KC_ASDF_RES_PATH"
     return 1
   fi
-  return 0
 }
 
 ## Get latest tags from GitHub
