@@ -138,11 +138,16 @@ kc_asdf_checksum() {
 ## usage: `kc_asdf_gpg '/tmp/hello.tar.gz' 'https://example.com'`
 kc_asdf_gpg() {
   local ns="gpg.main"
-  # TODO: implement gpg verify
-  kc_asdf_warn "$ns" "gpg verify is not implemented yet"
-
-  ## Get GPG User ID from public key
-  # gpg --list-packets aws.pub | grep -E '^:user ID packet: ' | sed 's|^:user ID packet: ||' | tr -d '"'
+  local public_key="${KC_ASDF_RES_PATH:?}/public-key.asc"
+  if [ -f "$public_key" ]; then
+    gpg --list-packets "$public_key" |
+      grep -E '^:user ID packet: ' |
+      sed 's|^:user ID packet: ||' |
+      tr -d '"'
+  else
+    kc_asdf_error "$ns" "public-key not found at %s" "$KC_ASDF_RES_PATH"
+    return 1
+  fi
   return 0
 }
 
