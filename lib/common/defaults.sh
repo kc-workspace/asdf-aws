@@ -261,7 +261,7 @@ kc_asdf_transfer() {
     dir="$(dirname "$output")"
     base="$(basename "$output")"
 
-    kc_asdf_debug "$ns" "we will create filename '%s' at %s" \
+    kc_asdf_debug "$ns" "create '%s' (filename) at %s (target)" \
       "$base" "$dir"
     if ! [ -d "$dir" ]; then
       kc_asdf_debug "$ns" "create missing directory (%s)" "$dir"
