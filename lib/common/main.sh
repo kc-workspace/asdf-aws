@@ -141,7 +141,7 @@ kc_asdf_gpg() {
   local fingerprint="FB5DB77FD5C118B80511ADA8A6310ACC4672475C"
   local public_key="${KC_ASDF_RES_PATH:?}/public-key.asc"
 
-  command -v gpg >/dev/null &&
+  ! command -v gpg >/dev/null &&
     kc_asdf_error "$ns" "gpg command is missing" &&
     return 1
   ! [ -f "$public_key" ] &&
