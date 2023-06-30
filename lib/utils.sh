@@ -15,3 +15,15 @@ download_filename() {
   kc_asdf_error "$ns" "not support os name %s" "$KC_ASDF_OS"
   return 1
 }
+
+_kc_asdf_custom_enabled_features() {
+  local ns="feature-custom.utils"
+  local feature="$1"
+
+  ## GPG are not support on MacOS
+  if [[ "$feature" == "gpg" ]] && kc_asdf_is_darwin; then
+    return 1
+  fi
+
+  return 0
+}
