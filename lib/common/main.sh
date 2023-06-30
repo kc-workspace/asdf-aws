@@ -155,10 +155,13 @@ kc_asdf_gpg() {
   fi
 
   kc_asdf_debug "$ns" "importing public key"
-  if ! kc_asdf_exec gpg --import "$public_key" >/dev/null; then
+  if ! kc_asdf_exec gpg --import "$public_key" 2>/dev/null; then
     kc_asdf_error "$ns" "import public key failed"
     return 1
   fi
+
+  kc_asdf_debug "$ns" "clean gpg key imported earlier"
+  kc_asdf_exec gpg --delete-secret-and-public-key "$fingerprint"
 }
 
 ## Get latest tags from GitHub
