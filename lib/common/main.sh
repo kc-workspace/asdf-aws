@@ -138,14 +138,25 @@ kc_asdf_checksum() {
 ## usage: `kc_asdf_gpg '/tmp/hello.tar.gz' 'https://example.com'`
 kc_asdf_gpg() {
   local ns="gpg.main"
+  local fingerprint="FB5DB77FD5C118B80511ADA8A6310ACC4672475C"
   local public_key="${KC_ASDF_RES_PATH:?}/public-key.asc"
-  if [ -f "$public_key" ]; then
-    gpg --list-packets "$public_key" |
-      grep -E '^:user ID packet: ' |
-      sed 's|^:user ID packet: ||' |
-      tr -d '"'
-  else
-    kc_asdf_error "$ns" "public-key not found at %s" "$KC_ASDF_RES_PATH"
+
+  command -v gpg >/dev/null &&
+    kc_asdf_error "$ns" "gpg command is missing" &&
+    return 1
+  ! [ -f "$public_key" ] &&
+    kc_asdf_error "$ns" "public key (%s) is missing" "$public_key" &&
+    return 1
+
+  kc_asdf_debug "$ns" "validating public key (%s)" "$public_key"
+  if ! kc_asdf_exec gpg --list-packets "$public_key" | grep -qE "$fingerprint"; then
+    kc_asdf_error "$ns" "The public key fingerprint is not matched"
+    return 1
+  fi
+
+  kc_asdf_debug "$ns" "importing public key"
+  if ! kc_asdf_exec gpg --import "$public_key" >/dev/null; then
+    kc_asdf_error "$ns" "import public key failed"
     return 1
   fi
 }
