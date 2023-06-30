@@ -333,6 +333,22 @@ kc_asdf_require_commands() {
   done
 }
 
+## Check enabled feature
+## usage: `kc_asdf_enabled_feature '<feature>' && _exec_feature`
+kc_asdf_enabled_feature() {
+  local ns="feature.defaults"
+  local feature="$1"
+  if command -v _kc_asdf_custom_enabled_features >/dev/null; then
+    kc_asdf_debug "$ns" "developer custom feature '%s' status" "$feature"
+    if ! _kc_asdf_custom_enabled_features "$feature"; then
+      kc_asdf_debug "$ns" "feature '%s' has been disabled" "$feature"
+      return 1
+    fi
+  else
+    return 0
+  fi
+}
+
 ## Create temp file and return path
 ## usage: `kc_asdf_temp_file`
 kc_asdf_temp_file() {

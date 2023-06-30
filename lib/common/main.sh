@@ -141,6 +141,10 @@ kc_asdf_gpg() {
   local fingerprint="FB5DB77FD5C118B80511ADA8A6310ACC4672475C"
   local public_key="${KC_ASDF_RES_PATH:?}/public-key.asc"
 
+  [ -n "${ASDF_INSECURE:-}" ] &&
+    kc_asdf_warn "$ns" "Skipped checksum because user disable security" &&
+    return 0
+
   local filepath="$1" gpg_url="$2"
   local dirpath filename
   dirpath="$(dirname "$filepath")"
