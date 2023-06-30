@@ -104,7 +104,7 @@ kc_asdf_checksum() {
 
   local cs_tmppath="$dirpath/$cs_tmp" cs_path="$dirpath/$cs_txt"
 
-  kc_asdf_debug "$ns" "downloading checksum of %s at '%s'" \
+  kc_asdf_debug "$ns" "downloading checksum of %s from '%s'" \
     "$filename" "$cs_url"
   if ! kc_asdf_fetch_file "$cs_url" "$cs_tmppath"; then
     return 1
@@ -141,6 +141,13 @@ kc_asdf_gpg() {
   local fingerprint="FB5DB77FD5C118B80511ADA8A6310ACC4672475C"
   local public_key="${KC_ASDF_RES_PATH:?}/public-key.asc"
 
+  local filepath="$1" gpg_url="$2"
+  local dirpath filename
+  dirpath="$(dirname "$filepath")"
+  filename="$(basename "$filepath")"
+
+  local sig_filepath="$dirpath/$filename.sig"
+
   ! command -v gpg >/dev/null &&
     kc_asdf_error "$ns" "gpg command is missing" &&
     return 1
@@ -149,19 +156,31 @@ kc_asdf_gpg() {
     return 1
 
   kc_asdf_debug "$ns" "validating public key (%s)" "$public_key"
-  if ! kc_asdf_exec gpg --list-packets "$public_key" | grep -qE "$fingerprint"; then
+  if ! kc_asdf_exec gpg --quiet --list-packets "$public_key" | grep -qE "$fingerprint"; then
     kc_asdf_error "$ns" "The public key fingerprint is not matched"
     return 1
   fi
 
-  kc_asdf_debug "$ns" "importing public key"
-  if ! kc_asdf_exec gpg --import "$public_key" 2>/dev/null; then
-    kc_asdf_error "$ns" "import public key failed"
+  kc_asdf_debug "$ns" "downloading gpg signature of %s from '%s'" \
+    "$filename" "$gpg_url"
+  if ! kc_asdf_fetch_file "$gpg_url" "$sig_filepath"; then
+    return 1
+  fi
+
+  kc_asdf_debug "$ns" "importing public key (%s)" "$public_key"
+  if ! kc_asdf_exec gpg --quiet --import "$public_key"; then
+    kc_asdf_error "$ns" "import public key failed, look on debug mode for more detail"
+    return 1
+  fi
+
+  kc_asdf_debug "$ns" "verifying signature of %s" "$filepath"
+  if ! gpg --quiet --verify "$sig_filepath" "$filepath"; then
     return 1
   fi
 
   kc_asdf_debug "$ns" "clean gpg key imported earlier"
-  kc_asdf_exec gpg --delete-secret-and-public-key "$fingerprint"
+  kc_asdf_exec gpg --quiet --yes --batch \
+    --delete-secret-and-public-key "$fingerprint"
 }
 
 ## Get latest tags from GitHub

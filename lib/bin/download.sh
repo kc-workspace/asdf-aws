@@ -61,8 +61,11 @@ __asdf_bin() {
   command -v _kc_asdf_custom_post_download >/dev/null &&
     kc_asdf_debug "$ns" "developer has post download function defined" &&
     _kc_asdf_custom_post_download "$version" "$download_url" "$tmppath"
+  local gpg_sig_url
+  gpg_sig_url="https://awscli.amazonaws.com/$(download_filename).sig"
+  gpg_sig_url="$(kc_asdf_template "$gpg_sig_url" "${vars[@]}")"
   kc_asdf_step "gpg" "$tmpfile" \
-    kc_asdf_gpg "$tmppath" ||
+    kc_asdf_gpg "$tmppath" "$gpg_sig_url" ||
     return 1
 
   local mode
