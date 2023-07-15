@@ -1,10 +1,26 @@
 ---
 ## Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
-_commit: v1.3.3-52-g8bdbfd3
+_commit: v2.0.0-5-g4cf56eb
 _src_path: /Users/kamontat/Desktop/Personal/asdf-plugin-template
+addon_yaml:
+    archive: true
+    checksum: false
+    download: true
+    fetch: true
+    git: false
+    github: true
+    gpg: true
+    help: true
+    install: true
+    package: true
+    python: false
+    system: true
+    tags: true
+    version: true
 app_desc: Universal Command Line Interface for Amazon Web Services
 app_name: aws
 app_repo: https://github.com/aws/aws-cli
+app_type: standalone
 app_website: https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html
 archive_conf_path: aws/dist
 archive_conf_strip: 0
@@ -19,7 +35,7 @@ custom_require_commands: ''
 download_url: https://awscli.amazonaws.com/$(download_filename)
 gpg_enabled: true
 gpg_fingerprint: FB5DB77FD5C118B80511ADA8A6310ACC4672475C
-gpg_public_key: '-----BEGIN PGP PUBLIC KEY BLOCK-----
+gpg_public_key_text: '-----BEGIN PGP PUBLIC KEY BLOCK-----
 
 
     mQINBF2Cr7UBEADJZHcgusOJl7ENSyumXh85z0TRV0xJorM2B/JL0kHOyigQluUG
@@ -75,6 +91,7 @@ gpg_public_key: '-----BEGIN PGP PUBLIC KEY BLOCK-----
     =vYOk
 
     -----END PGP PUBLIC KEY BLOCK-----'
+gpg_public_key_type: text
 gpg_sig_url: https://awscli.amazonaws.com/$(download_filename).sig
 install_map_enabled: true
 install_map_method: link
