@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.0.1](https://github.com/kc-workspace/asdf-aws/compare/v1.0.0...v1.0.1) (2023-11-06)
+
+
+### Improvements
+
+* update plugin from template [autocommit] ([a58a417](https://github.com/kc-workspace/asdf-aws/commit/a58a417e8d09e37b6aa11aab6bd75877477317ac))
+* update plugin from template [autocommit] ([30acfdd](https://github.com/kc-workspace/asdf-aws/commit/30acfdd4a848165cc77eb39cd0d41187b2e75c3e))
+* update plugin from template [autocommit] ([a13beeb](https://github.com/kc-workspace/asdf-aws/commit/a13beeb840dc2a3cd8bc181dd546da38fc0ebf02))
+* update plugin from template [autocommit] ([ef212c2](https://github.com/kc-workspace/asdf-aws/commit/ef212c2a036da38e02c6a1a3bbfa9fd1ef6507e8))
+* update plugin from template [autocommit] ([330673c](https://github.com/kc-workspace/asdf-aws/commit/330673c21aa4b4d59b3f99a206f6abcf37d0457a))
+* update plugin from template [autocommit] ([27bfe61](https://github.com/kc-workspace/asdf-aws/commit/27bfe619ee7d97e6bf83765ae42c3eb207b61d7a))
+* update plugin from template [autocommit] ([6dd5da9](https://github.com/kc-workspace/asdf-aws/commit/6dd5da911e27fda1b42f5775514a66f721dab6e2))
+* update plugin from template [autocommit] ([1c597d5](https://github.com/kc-workspace/asdf-aws/commit/1c597d5514daf1077c3bc2349a84082f0790ca17))
+* update plugin from template [autocommit] ([c79dde0](https://github.com/kc-workspace/asdf-aws/commit/c79dde064b1904a63b55e7972563146b5497ca90))
+
 ## 1.0.0 (2023-07-15)
 
 
