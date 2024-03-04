@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.2](https://github.com/kc-workspace/asdf-aws/compare/v1.0.1...v1.0.2) (2024-03-04)
+
+
+### Performance Improvements
+
+* update plugin from template [autocommit] ([a302bf0](https://github.com/kc-workspace/asdf-aws/commit/a302bf0879b1fcfd2f4bce5f7dd0e8bb861295dc))
+* update plugin from template [autocommit] ([4848cce](https://github.com/kc-workspace/asdf-aws/commit/4848cce6c4addae3699dcf8ab427cc03901befd6))
+
 ## [1.0.1](https://github.com/kc-workspace/asdf-aws/compare/v1.0.0...v1.0.1) (2023-11-06)
 
 
